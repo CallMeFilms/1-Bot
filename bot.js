@@ -1,6 +1,6 @@
 // Import Discord module
 const discord = require("discord.js");
-const config = require("config.json");
+const config = require("./config.json");
 
 // Create client and login
 var client = new discord.Client();
