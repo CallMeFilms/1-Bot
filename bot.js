@@ -1,9 +1,10 @@
 // Import Discord module
 const discord = require("discord.js");
+const config = require("config.json");
 
 // Create client and login
 var client = new discord.Client();
-client.login("MzY5OTE3Nzk4OTc1Mjc1MDA5.Dx0Z9A.hZOPFpsL1LA4bjY2fvIRZTk55xo");
+client.login(config.token);
 
 // ####################
 // Client Ready Event Handler
