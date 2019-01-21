@@ -22,7 +22,7 @@ module.exports = {
     const embed = new discord.RichEmbed().setColor(0x42f471).setDescription(suggestion).setFooter("User ID - " + msg.author.id);
     suggestionsChannel.createWebhook(msg.author.username, msg.author.avatarURL).then(webhook => {
       webhook.send(embed).then(async msg => {
-        await msg.react(channel.guild.emojis.find(emoji => emoji.name === "agree"));
+        await msg.react((channel.guild.emojis.find(emoji => emoji.name === "agree") || ":white_check_mark:"));
         msg.react(channel.guild.emojis.find(emoji => emoji.name === "disagree"));
       }).then(() => {
         channel.send("Your suggestion has been sent to " + suggestionsChannel + ". Thank you!");

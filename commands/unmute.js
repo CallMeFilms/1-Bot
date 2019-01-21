@@ -39,6 +39,6 @@ module.exports = {
     }
     member.removeRole(mutedRole);
     member.muted = null;
-    channel.send(channel.guild.emojis.find(emoji => emoji.name === "agree") + " ***Unmuted " + member.user.username + "#" + member.user.discriminator + "***");
+    channel.send((channel.guild.emojis.find(emoji => emoji.name === "agree") || ":white_check_mark:") + " ***Unmuted " + member.user.username + "#" + member.user.discriminator + "***");
   }
 }

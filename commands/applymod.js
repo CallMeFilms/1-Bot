@@ -11,9 +11,9 @@ module.exports = {
   // Command Handler
   // ####################
   handle: async function(msg, sender, channel, command, args) {
-    channel.send(channel.guild.emojis.find(emoji => emoji.name === "agree") + " ***The application form has been sent to your DM's.***");
+    channel.send((channel.guild.emojis.find(emoji => emoji.name === "agree") || ":white_check_mark:") + " ***The application form has been sent to your DM's.***");
     form.send(sender, config.forms.modapp.questions, { "title":"Moderator Application" }, (form) => {
-      sender.send(channel.guild.emojis.find(emoji => emoji.name === "agree") + " ***Thank you for applying. Our staff will take a look at your application and get back to you soon.***");
+      sender.send((channel.guild.emojis.find(emoji => emoji.name === "agree") || ":white_check_mark:") + " ***Thank you for applying. Our staff will take a look at your application and get back to you soon.***");
       var guild = channel.guild;
       console.log("");
       console.log("[Log] Form completed:");

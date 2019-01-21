@@ -14,26 +14,26 @@ client.on("ready", () => {
   console.log("Logged in as " + client.user.username + "#" + client.user.discriminator);
   // Find 1-Up guild
   const oneUp = client.guilds.find(guild => guild.name === "1-Up");
-  // If 1-Up could not be found, leave handler
-  if(!oneUp) {
-    console.log("Could not find guild 1-Up");
-    console.log("Logging out...");
-    return;
-  }
-  console.log("Found guild 1-Up");
-  // Find bot logs channel and log when bot came online
-  const logs = oneUp.channels.find(chan => chan.name === "bot-logs");
-  if(logs) {
-    const curDate = new Date();
-    var minutes = parseInt(curDate.getUTCMinutes());
-    if(minutes < 10) {
-      minutes = "0" + minutes;
+  // If 1-Up could not be found, leave
+  var guilds = client.guilds.array();
+  // Loop through each guild
+  for(var i in guilds) {
+    console.log("Found guild " + guilds[i].name + "...");
+    // If current guild has a bot logs channel, log when bot came online
+    var logs = guilds[i].channels.find(chan => chan.name === "bot-logs");
+    // console.log(logs);
+    if(logs) {
+      var curDate = new Date();
+      var minutes = parseInt(curDate.getUTCMinutes());
+      if(minutes < 10) {
+        minutes = "0" + minutes;
+      }
+      var seconds = parseInt(curDate.getUTCSeconds());
+      if(seconds < 10) {
+        seconds = "0" + seconds;
+      }
+      logs.send((guilds[i].emojis.find(emoji => emoji.name === "agree") || ":white_check_mark:") + " Bot Online **(" + (curDate.getUTCMonth() + 1) + "/" + curDate.getUTCDate() + "/" + curDate.getUTCFullYear() + " @ " + curDate.getUTCHours() + ":" + minutes + ":" + seconds + " UTC)**");
     }
-    var seconds = parseInt(curDate.getUTCSeconds());
-    if(seconds < 10) {
-      seconds = "0" + seconds;
-    }
-    logs.send(":white_check_mark: Bot Online **(" + (curDate.getUTCMonth() + 1) + "/" + curDate.getUTCDate() + "/" + curDate.getUTCFullYear() + " @ " + curDate.getUTCHours() + ":" + minutes + ":" + seconds + " UTC)**");
   }
 });
 
