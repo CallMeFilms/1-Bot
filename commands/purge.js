@@ -5,7 +5,7 @@ module.exports = {
   // ####################
   // Command Handler
   // ####################
-  handle: async function(sender, channel, msg, command, args) {
+  handle: async function(msg, sender, channel, command, args) {
     if(args.length < 1) {
       channel.send("Please specify a number of messages to purge.");
       return;
