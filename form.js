@@ -54,9 +54,28 @@ module.exports = {
       counter++;
       if(counter === questions.length) {
         collector.stop();
+        const date = new Date(Date.now());
+        var month = date.getUTCMonth() + 1;
+        if(month < 10) {
+          month = "0" + month;
+        }
+        var day = date.getUTCDate();
+        if(day < 10) {
+          day = "0" + day;
+        }
+        var minutes = date.getUTCMinutes();
+        if(minutes < 10) {
+          minutes = "0" + minutes;
+        }
+        var seconds = date.getUTCSeconds();
+        if(seconds < 10) {
+          seconds = "0" + seconds;
+        }
+        var timestamp = month + "/" + day + "/" + date.getUTCFullYear() + " @ " + date.getUTCHours() + ":" + minutes + ":" + seconds;
         const form = {
           "questions": questions,
-          "answers": answers
+          "answers": answers,
+          "timestamp": timestamp
         };
         complete(form);
         return;
